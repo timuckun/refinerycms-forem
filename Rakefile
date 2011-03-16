@@ -16,6 +16,7 @@ begin
     gem.authors = ["Tim Uckun",  "Ryan Bigg"]
     gem.files = Dir["{lib}/**/*", "{app}/**/*", "{public}/**/*", "{config}/**/*"]
     gem.add_dependency    'refinerycms',  '>= 0.9.9'
+    gem.add_dependency   'simple_form'
   end
   Jeweler::GemcutterTasks.new
 rescue

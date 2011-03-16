@@ -31,3 +31,4 @@ module Refinery
     end
   end
 end
+require 'simple_form'

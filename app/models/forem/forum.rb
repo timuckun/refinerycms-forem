@@ -1,5 +1,6 @@
 module Forem
   class Forum < ActiveRecord::Base
+    set_table_name 'forem_forums'
     has_many :topics, :dependent => :destroy
     has_many :posts, :through => :topics, :dependent => :destroy
 
