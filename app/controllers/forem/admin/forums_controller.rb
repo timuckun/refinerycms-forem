@@ -1,5 +1,5 @@
 module Forem
-  class ForumsController < Forem::ApplicationController
+  class Admin::ForumsController < Forem::ApplicationController
 
     #crudify Forem::Forum,:title_attribute => :title
     before_filter :authenticate_forem_admin, :only => [:new, :create]
