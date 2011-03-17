@@ -1,0 +1,20 @@
+<nav id='actions'>
+  <ul>
+    <li>
+       <%= link_to t('.new'), new_admin_forem_forum_path, :class => 'add_icon' %>
+    </li>
+  </ul>
+</nav>
+
+
+<div id="records">
+  <% unless @forums.blank? %>
+    <ul>
+      <%= render :partial => 'forum', :collection => @forums %>
+    </ul>
+  <% else %>
+    <strong>
+      <%= t('.no_forums_yet')%>
+    </strong>
+  <% end %>
+</div>

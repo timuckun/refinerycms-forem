@@ -1,0 +1,17 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>'>
+  <span class='title'>
+    <%= forum.title %>
+  </span>
+  <span class='actions'>
+    <%= link_to refinery_icon_tag('application_go.png'), forum_path(forum),
+                :title => t('.view_live_html'),
+                :target => "_blank" %>
+    <%= link_to refinery_icon_tag('application_edit.png'), edit_admin_forem_forum_path(forum),
+                :title => t('.edit') %>
+    <%= link_to refinery_icon_tag('delete.png'), admin_forem_forum_path(forum),
+                :class => "cancel confirm-delete",
+                :title => t('.delete'),
+                :method => :delete,
+                :confirm => t('shared.admin.delete.message', :title => forum.title) %>
+  </span>
+</li>

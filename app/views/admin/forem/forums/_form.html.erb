@@ -1,0 +1,26 @@
+<%= form_for [:admin, @forum] do |f| %>
+  <%= render :partial => "/shared/admin/error_messages",
+             :locals => {
+               :object => @forum,
+               :include_object_name => true
+             } %>
+
+  <div class='field'>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "larger widest" %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => "20", :class => "widest" %>
+  </div>
+
+  <%= render :partial => "/shared/admin/form_actions",
+             :locals => {
+               :f => f,
+               :continue_editing => false,
+               :delete_title => t('admin.forem.forums.forum.delete'),
+               :delete_confirmation => t('shared.admin.delete.message', :title => @forum.title)
+             } %>
+
+<% end %>

@@ -11,7 +11,7 @@ module Refinery
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinerycms_forum"
-          plugin.url = {:controller => '/forem/forums', :action => 'index'}
+          plugin.url = {:controller => '/admin/forem/forums', :action => 'index'}
 
           #plugin.url = {:controller => '/admin/blog/posts', :action => 'index'}
           plugin.menu_match = /^\/?(admin|refinery)\/forem\/?(forums|posts|topics)?/

@@ -30,3 +30,17 @@ en:
       not_created: Your reply could not be posted.
       deleted: Your post has been deleted.
       cannot_delete: You cannot delete a post you do not own.
+  admin:
+    forem:
+      forums:
+        index:
+          no_forums_yet: There are no forums yet. Click "Add Forum" to add your first forum.
+          new: Add forum
+        forum:
+          view_live_html: "View this forum live <br/><em>(opens in a new window)</em>"
+          edit: "Edit this forum"
+          delete: "Remove this forum forever"
+          created: "%{what} was successfully created."
+          updated: "%{what} was successfully updated."
+          deleted: "%{what} was successfully deleted."
+          
