@@ -1,6 +1,6 @@
 Refinery::Application.routes.draw do
 
-  scope(:path => 'forem', :module => 'forem') do
+  scope(:path => 'forem', :as => 'forem', :module => 'forem') do
     root :to => "forums#index"
     resources :forums do
       resources :topics do
@@ -19,5 +19,4 @@ Refinery::Application.routes.draw do
       end
     end
   end
-
 end

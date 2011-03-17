@@ -1,8 +1,8 @@
 en:
   plugins:
-    refinerycms_forum:
+    refinerycms_forem:
       title: Forums
-  forum:
+  forem:
     errors:
       not_signed_in: You must sign in first.
       access_denied: Access denied.

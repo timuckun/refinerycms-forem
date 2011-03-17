@@ -1,1 +1,17 @@
 This is an attempt to port https://github.com/radar/forem as a Refinery plugin
+
+requires refinery 0.9.9.9
+
+add it to your gemfile
+
+gem 'refinerycms-forem', :git => 'git@github.com:timuckun/refinerycms-forem.git'
+
+bundle install
+
+rails g  refinerycms_forem
+
+rake db:migrate
+
+That should get you going.
+
+
