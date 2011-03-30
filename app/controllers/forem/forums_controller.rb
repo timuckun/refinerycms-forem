@@ -10,6 +10,12 @@ module Forem
 
     def show
       @forum = Forem::Forum.find(params[:id])
+#      @topics_grid = initialize_grid(Topic,
+#              :conditions => ['forum_id = ?', @forum.id],
+#              :order => 'forem_topics.created_at',
+#              :order_direction => 'desc',
+#              :per_page => 40
+#      )
     end
     
     def new

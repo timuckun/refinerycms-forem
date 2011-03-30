@@ -1,16 +1,15 @@
 <ul class="forums listing">
   <% @forums.each do |forum| %>
     <li class="<%= cycle("odd", "even") %>">
-      <h2><%= link_to forum.title, forem_forum_path(forum) %></h2>
+      <h2><%= link_to forum.title, forum_path(forum) %></h2>
       <%= forum.description %>
       <br>
-      <%= t("forem.forum.topics_count", :count => forum.topics.count) %> topics,
-      <%= t("forem.forum.posts_count", :count => forum.posts.count) %> posts
+      <%= t("forem.forum.topics_count", :count => forum.topics_count) %> topics,
+      <%= t("forem.forum.posts_count", :count => forum.posts_count) %> posts
       <br>
-      Last post was TIME AGO by NAME in TOPIC
+      <!-- Last post was TIME AGO by NAME in TOPIC -->
     </li>
   <% end %>
-  admin <%= refinery_user? %>
-  <%= current_user.email %>
-  <%= link_to("Create new Forum" , new_forem_forum_path) if refinery_user?  %>
+
+
 </ul>

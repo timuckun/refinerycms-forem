@@ -4,6 +4,8 @@ module Forem
     before_filter :find_forum
 
     def show
+
+
       @topic = @forum.topics.find(params[:id])
     end
 
@@ -13,15 +15,14 @@ module Forem
     end
   
     def create
-      # Association builders are broken in edge Rails atm
-      # Hack our way around it
-      # TODO: Fix the hack
-      @topic = Forem::Topic.new(params[:topic])
-      @topic.user = current_user
-      @topic.forum_id = params[:forum_id]
-      if @topic.save
+
+       #{"commit"=>"Create Topic", "topic"=>{"subject"=>"test Topic"}, "authenticity_token"=>"Tp6D2bzGK2whGn9ycwzVyn2PFsvQ5I2GxmNkJIbDlh4=", "utf8"=>"✓", "forum_id"=>"1", "locale"=>:en}
+
+
+
+      if Forem::Service.create_topic(params["forum_id"], params[:topic], current_user.id)
         flash[:notice] = t("forem.topic.created")
-        redirect_to [@forum, @topic]
+        redirect_to forum_path(@forum)
       else
         flash[:error] = t("forem.topic.not_created")
         render :action => "new"

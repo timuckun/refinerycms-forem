@@ -12,5 +12,9 @@ page = Page.create(
 )
 
 Page.default_parts.each do |default_page_part|
-  page.parts.create(:title => default_page_part, :body => nil)   if page.column_names.map(&:to_sym).include?(default_page_part.to_sym)
+  page.parts.create(:title => default_page_part, :body => nil)
 end
+
+
+
+

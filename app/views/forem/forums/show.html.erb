@@ -1,6 +1,24 @@
-<div id='forum'>
-  <h2><%= @forum.title %></h2>
-  <div id='forums'>
-    <%= render :partial => "forem/forums/forum", :locals => { :forum => @forum } %>
+<div id='forum_<%= @forum.id %>' class='forum'>
+  <div class="forum_name"><%= @forum.title %></div>
+  <div class='forum_description'>
+    <%= @forum.description %>
   </div>
+
+
+
+<div class="forum_header-links">
+  <%= link_to t("forem.topic.create"), new_forum_topic_path(@forum)  , :class => "forum_topic-create-link" %>
+</div>
+
+<table class='forum_topics'>
+
+  <% @forum.topics.each do |topic| %>
+    <tr class="forum_topic">
+    <td class='forum_topic_subject'>
+          <%= link_to topic.subject, forum_topic_path(@forum, topic) %>
+      </td>
+
+    </tr>
+  <% end %>
+  </table>
 </div>

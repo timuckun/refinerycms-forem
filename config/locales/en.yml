@@ -11,14 +11,13 @@ en:
       created: This forum has been created.
       not_created: This forum could not be created.
       topics_count:
-        zero: 0 topics
         one: 1 topic
-        many: "%{count} topics"
+        other: "%{count} topics"
       posts_count:
-        zero: 0 posts
         one: 1 post
-        many: "%{count} posts"
+        other: "%{count} posts"
     topic:
+      create: Create topic
       created: This topic has been created.
       new: Creating a new topic
       not_created: This topic could not be created.

@@ -3,7 +3,7 @@
     <%= forum.title %>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag('application_go.png'), forem_forum_path(forum),
+    <%= link_to refinery_icon_tag('application_go.png'), admin_forem_forum_path(forum),
                 :title => t('.view_live_html'),
                 :target => "_blank" %>
     <%= link_to refinery_icon_tag('application_edit.png'), edit_admin_forem_forum_path(forum),

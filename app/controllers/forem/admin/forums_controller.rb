@@ -20,7 +20,7 @@ module Forem
       @forum = Forem::Forum.new(params[:forum])
       if @forum.save
         flash[:notice] = t("forem.forum.created")
-        redirect_to @forum
+        redirect_to admin_forem_root_path
       else
         flash[:error] = t("forem.forum.not_created")
         render :action => "new"
