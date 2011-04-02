@@ -5,7 +5,7 @@ end
 
 page = Page.create(
   :title => "Forums",
-  :link_url => "/forem",
+  :link_url => "/forums",
   :deletable => false,
   :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
   :menu_match => "^/forums?(\/|\/.+?|)$"

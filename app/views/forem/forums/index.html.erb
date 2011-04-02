@@ -1,15 +1,33 @@
-<ul class="forums listing">
-  <% @forums.each do |forum| %>
-    <li class="<%= cycle("odd", "even") %>">
-      <h2><%= link_to forum.title, forum_path(forum) %></h2>
-      <%= forum.description %>
-      <br>
-      <%= t("forem.forum.topics_count", :count => forum.topics_count) %> topics,
-      <%= t("forem.forum.posts_count", :count => forum.posts_count) %> posts
-      <br>
-      <!-- Last post was TIME AGO by NAME in TOPIC -->
-    </li>
-  <% end %>
+<table width="100%" cellspacing="1" cellpadding="2" border="0" class="forum">
+<%=content_tag :tbody do%>
+<tr>
+	<th nowrap="nowrap" height="25"  colspan="2">&nbsp;Forum&nbsp;</th>
+	<th width="50" nowrap="nowrap">&nbsp;Topics&nbsp;</th>
+	<th width="50" nowrap="nowrap">&nbsp;Posts&nbsp;</th>
+	<th nowrap="nowrap">&nbsp;Last Post&nbsp;</th>
+</tr>
 
 
-</ul>
+ <% @forums.each do |forum| %>
+
+<%=content_tag :tr,:class=>"#{cycle('odd', 'even')}" do %>
+<!-- logic to determine whether messages are new -->
+  	<td valign="middle" height="50" align="center"><%=image_tag "email.png",:alt=>"New posts" %></td>
+  	<td width="100%" height="50"> 
+  	  <h2><%= link_to forum.title, forum_topics_path(forum) %></h2>
+    	<h3><%= forum.description %> </h3>
+    </td>
+  	<td valign="middle" height="50" align="center"><%= forum.topics_count %></td>
+  	<td valign="middle" height="50" align="center"><%= forum.posts_count %></td>
+  	<td valign="middle" nowrap="nowrap" height="50" align="center"> Thu Mar 31, 2011 1:19 pm<br><%= link_to "user_name", "#"%> </td>
+<!-- Last post was TIME AGO by NAME in TOPIC --> 
+<%end%>
+<% end%> 
+
+
+
+<%end%>
+
+</table>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-forum') %>

@@ -16,10 +16,14 @@
 module Refinery
   module Forem
 
-    class Engine < Rails::Engine
-      initializer 'forum serves assets' do |app|
+    class Engine < Rails::Engine  
+      initializer "static assets" do |app|
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
+      
+      # initializer 'forum serves assets' do |app|
+      #   app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      # end
 
       config.after_initialize do
         Refinery::Plugin.register do |plugin|
