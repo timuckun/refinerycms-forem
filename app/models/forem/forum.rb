@@ -26,7 +26,7 @@ module Forem
   # oh has_finder i eagerly await thee
   scope :ordered, order('position asc')
   scope :by_freshness, order('updated_at desc')
-
+  
 
   end
 end

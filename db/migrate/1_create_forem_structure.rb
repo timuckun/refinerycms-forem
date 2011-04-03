@@ -47,7 +47,8 @@ class CreateForemStructure < ActiveRecord::Migration
       t.text :body
       t.integer :reply_to_id
       t.text :body_html
-
+      t.string :name
+      t.string :email        
 
       t.timestamps
     end

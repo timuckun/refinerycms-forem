@@ -1,4 +1,6 @@
 <%= simple_form_for @post ,:url=>forum_topic_posts_path(@topic.forum,@topic) do |f| %>
+  <%= f.input :name%>
+  <%= f.input :email%>    
   <%= f.input :body,  :label => false   %>  
   <%= f.submit %>
 <% end %> 

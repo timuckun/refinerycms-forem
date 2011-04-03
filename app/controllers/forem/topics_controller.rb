@@ -21,9 +21,8 @@ module Forem
   
     def create
        #{"commit"=>"Create Topic", "topic"=>{"subject"=>"test Topic"}, "authenticity_token"=>"Tp6D2bzGK2whGn9ycwzVyn2PFsvQ5I2GxmNkJIbDlh4=", "utf8"=>"✓", "forum_id"=>"1", "locale"=>:en}
-
-
-      if Forem::Service.create_topic(params["forum_id"], params[:topic], current_user.id)
+      #TODO - I am currently allowing anonymous creation of topics (probably need to change at at later stage) 
+      if Forem::Service.create_topic(params["forum_id"], params[:topic], current_user&&current_user.id)
         flash[:notice] = t("forem.topic.created")
         redirect_to  forum_topics_path(@forum)
       else

@@ -9,7 +9,14 @@ module Forem
                        :foreign_key => "reply_to_id",
                        :dependent => :nullify
 
-    validates :body, :presence => true
+    validates :body, :presence => true  
+
+    class << self
+      def recent_post
+       order(:created_at).first 
+      end
+    end
+    
 
 
   end

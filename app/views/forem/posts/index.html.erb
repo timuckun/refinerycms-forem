@@ -8,18 +8,21 @@
 <table width="100%" cellspacing="1" cellpadding="2" border="0" class="forum">
   <%=content_tag :tbody do%>
     <tr>
-    	<th nowrap="nowrap" height="25"  colspan="2">&nbsp;Topics&nbsp;</th>
-    	<th width="50" nowrap="nowrap">&nbsp;Posts&nbsp;</th>
-    	<th nowrap="nowrap">&nbsp;Last Post&nbsp;</th>
+    	<th nowrap="nowrap" height="25" >&nbsp;Message&nbsp;</th>
+    	<th width="50" nowrap="nowrap">&nbsp;Author&nbsp;</th>
     </tr>
        <% @topic.posts.each do |post| %>
         <%=content_tag :tr,:class=>"#{cycle('odd', 'even')}" do %>    
           <!-- logic to determine whether messages are new -->
-          <td valign="middle" height="50" align="center"><%=image_tag "email.png",:alt=>"New posts" %></td>
           <td width="100%" height="50">
           <%=post.body %>  
           </td>
-          <td valign="middle" nowrap="nowrap" height="50" align="center"> Thu Mar 31, 2011 1:19 pm<br><%= link_to "user_name", "#"%> </td>
+          <td valign="middle" nowrap="nowrap" height="50" align="center"> 
+    	       <h3><%=post.name.empty?  ? "Anonymous" : post.name %> </h3>
+             <p> <%=time_ago_in_words(post.created_at)%> ago </p>        
+    	       <%=image_tag("users.png")%>
+
+            </td>
         <%end%>
       <%end%> 
   <%end%>
