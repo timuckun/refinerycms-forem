@@ -9,7 +9,7 @@ module Forem
                        :foreign_key => "reply_to_id",
                        :dependent => :nullify
 
-    validates :text, :presence => true
+    validates :body, :presence => true
 
 
   end

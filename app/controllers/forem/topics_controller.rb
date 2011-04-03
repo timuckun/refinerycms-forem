@@ -1,10 +1,10 @@
 module Forem
   class TopicsController < Forem::ApplicationController
-    before_filter :authenticate_forem_user, :except => [:show]
+    before_filter :authenticate_forem_user, :except => [:show,:index,:new,:create]
     before_filter :find_forum
 
     def index
-      @forums = Forem::Forum.all
+      # @forums = Forem::Forum.all
     end
 
 
@@ -21,6 +21,8 @@ module Forem
   
     def create
        #{"commit"=>"Create Topic", "topic"=>{"subject"=>"test Topic"}, "authenticity_token"=>"Tp6D2bzGK2whGn9ycwzVyn2PFsvQ5I2GxmNkJIbDlh4=", "utf8"=>"✓", "forum_id"=>"1", "locale"=>:en}
+
+
       if Forem::Service.create_topic(params["forum_id"], params[:topic], current_user.id)
         flash[:notice] = t("forem.topic.created")
         redirect_to  forum_topics_path(@forum)

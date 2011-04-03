@@ -15,3 +15,9 @@ table.forum th {
   font-weight: bold;
   height: 25px;
 }
+/* line 15, ../src/refinerycms-forum.scss */
+table.forum td {
+  background-color: #EFEFEF;
+  border-style: solid;
+  border-width: 1px;
+}
