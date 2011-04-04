@@ -28,7 +28,7 @@
 
     	       <%=time_ago_in_words(@recent_post.created_at)%>          
     	       <br>
-    	       <%=@recent_post.name.nil?  ? "Anonymous" : @recent_post.name %>
+    	       <%=@recent_post.name.nil? ||@recent_post.name.empty?  ? "Anonymous" : @recent_post.name %>
     	       <%=link_to(image_tag("icon_latest_reply.gif"),"#")%>
             <%else%>
             "no posts"

@@ -13,7 +13,7 @@ module Forem
 
     class << self
       def recent_post
-       order(:created_at).first 
+       order(:created_at).last 
       end
     end
     

@@ -16,14 +16,18 @@ module Forem
     def new
       @topic = @forum.topics.build
       @topic.posts.build
+      @post=@topic.posts.build
       render :layout => request.xhr? ? false : true  
     end
   
-    def create
-       #{"commit"=>"Create Topic", "topic"=>{"subject"=>"test Topic"}, "authenticity_token"=>"Tp6D2bzGK2whGn9ycwzVyn2PFsvQ5I2GxmNkJIbDlh4=", "utf8"=>"✓", "forum_id"=>"1", "locale"=>:en}
+    def create   
       #TODO - I am currently allowing anonymous creation of topics (probably need to change at at later stage) 
-      if Forem::Service.create_topic(params["forum_id"], params[:topic], current_user&&current_user.id)
-        flash[:notice] = t("forem.topic.created")
+      if topic=Forem::Service.create_topic(params["forum_id"], params[:topic].except(:forem_post), current_user&&current_user.id)  
+        notice =t("forem.topic.created")
+        if  params[:topic][:forem_post] && Forem::Service.create_post( topic.id, params[:topic][:forem_post], current_user&&current_user.id)  
+          notice += t("forem.post.created")
+        end
+        flash[:notice] = notice
         redirect_to  forum_topics_path(@forum)
       else
         flash[:error] = t("forem.topic.not_created")

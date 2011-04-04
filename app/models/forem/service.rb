@@ -13,7 +13,7 @@ module Forem
       topic=Topic.new(topic_params)
       topic.user_id = user_id
       topic.forum_id = forum_id
-      topic.save!
+      topic.save!&&topic
     end
   end
 end

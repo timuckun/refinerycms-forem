@@ -9,13 +9,15 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Tim Uckun", "Ryan Bigg"]
-  s.date = %q{2011-03-17}
+  s.date = %q{2011-04-04}
   s.description = %q{A port of forem to  refinerycms}
   s.email = %q{tim@uckun.com}
   s.extra_rdoc_files = [
     "README"
   ]
   s.files = [
+    "app/controllers/admin/forem/forums_controller.rb",
+    "app/controllers/forem/admin/forums_controller.rb",
     "app/controllers/forem/application_controller.rb",
     "app/controllers/forem/forums_controller.rb",
     "app/controllers/forem/posts_controller.rb",
@@ -23,7 +25,18 @@ Gem::Specification.new do |s|
     "app/helpers/helpers/forem/application_helper.rb",
     "app/models/forem/forum.rb",
     "app/models/forem/post.rb",
+    "app/models/forem/service.rb",
     "app/models/forem/topic.rb",
+    "app/views/admin/forem/forums/_form.html.erb",
+    "app/views/admin/forem/forums/_forum.html.erb",
+    "app/views/admin/forem/forums/edit.html.erb",
+    "app/views/admin/forem/forums/index.html.erb",
+    "app/views/admin/forem/forums/new.html.erb",
+    "app/views/forem/admin/forums/_form.html.erb",
+    "app/views/forem/admin/forums/_forum.html.erb",
+    "app/views/forem/admin/forums/index.html.erb",
+    "app/views/forem/admin/forums/new.html.erb",
+    "app/views/forem/admin/forums/show.html.erb",
     "app/views/forem/forums/_form.html.erb",
     "app/views/forem/forums/_forum.html.erb",
     "app/views/forem/forums/index.html.erb",
@@ -31,17 +44,31 @@ Gem::Specification.new do |s|
     "app/views/forem/forums/show.html.erb",
     "app/views/forem/posts/_form.html.erb",
     "app/views/forem/posts/_post.html.erb",
+    "app/views/forem/posts/index.html.erb",
     "app/views/forem/posts/new.html.erb",
     "app/views/forem/topics/_form.html.erb",
+    "app/views/forem/topics/index.html.erb",
     "app/views/forem/topics/new.html.erb",
     "app/views/forem/topics/show.html.erb",
     "config/locales/en.yml",
     "config/routes.rb",
     "lib/generators/refinerycms_forem_generator.rb",
-    "lib/refinerycms-forem.rb"
+    "lib/refinerycms-forem.rb",
+    "public/facebox/closelabel.png",
+    "public/facebox/loading.gif",
+    "public/images/email.png",
+    "public/images/email_close.png",
+    "public/images/facebox/closelabel.png",
+    "public/images/facebox/loading.gif",
+    "public/images/icon_latest_reply.gif",
+    "public/images/users.png",
+    "public/javascripts/facebox.js",
+    "public/src/refinerycms-forum.scss",
+    "public/stylesheets/facebox.css",
+    "public/stylesheets/refinerycms-forum.css"
   ]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.6.1}
   s.summary = %q{Ruby on Rails forum engine for RefineryCMS}
 
   if s.respond_to? :specification_version then

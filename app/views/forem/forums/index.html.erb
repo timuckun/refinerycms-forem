@@ -22,9 +22,9 @@
   	<td valign="middle" nowrap="nowrap" height="50" align="center">       
   	      <%if @recent_post= forum.posts.recent_post%>
 
-  	       <%=time_ago_in_words(@recent_post.created_at)%>          
+  	       <%=time_ago_in_words(@recent_post.created_at)%> ago         
   	       <br>
-  	       <%=@recent_post.name.nil?  ? link_to("Anonymous",forum_topic_posts_path(forum, @recent_post.topic)) : link_to(@recent_post.name,forum_topic_posts_path(forum, @recent_post.topic)) %>
+  	       <%=@recent_post.name.nil? || @recent_post.name.empty? ? link_to("Anonymous",forum_topic_posts_path(forum, @recent_post.topic)) : link_to(@recent_post.name,forum_topic_posts_path(forum, @recent_post.topic)) %>
   	       <%=link_to(image_tag("icon_latest_reply.gif"),forum_topic_posts_path(forum, @recent_post.topic))%>
           <%else%>
           "no posts"
