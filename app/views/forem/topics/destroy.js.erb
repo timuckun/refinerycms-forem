@@ -1,0 +1,8 @@
+/* Insert a notice between the last comment and the comment form */
+$("#table-notice").html('<div class="flash"><%= escape_javascript(flash[:notice]) + escape_javascript(flash[:error])%></div>');
+$("#table-notice .flash").fadeOut(4000);
+
+/* Eliminate the comment by fading it out --unless there is an error */
+<%if flash[:error].nil?||flash[:error].empty? %>
+$('tr#row_<%= @topic.id %>').fadeOut();
+<%end%>

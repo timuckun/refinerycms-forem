@@ -1,8 +1,11 @@
+<div id="table-notice"> </div>
+
 <div id='forum_<%= @topic.id %>' class='topic'>
   <div class="topic_name"><%= @topic.subject %></div>
 
   <div class="forum_header-links">
     <%= link_to t("forem.post.new"), new_forum_topic_post_path(@topic.forum, @topic) ,  {:rel=>"facebox", :class=>"button1"} %>
+       <%= link_to "topics", forum_topics_path(@topic.forum) %>
   </div>
 
 <table width="100%" cellspacing="1" cellpadding="2" border="0" class="forum">
@@ -11,22 +14,23 @@
     	<th nowrap="nowrap" height="25" >&nbsp;Message&nbsp;</th>
     	<th width="50" nowrap="nowrap">&nbsp;Author&nbsp;</th>
     </tr>
-       <% @topic.posts.each do |post| %>
-        <%=content_tag :tr,:class=>"#{cycle('odd', 'even')}" do %>    
+       <% @posts.each do |post| %>
+        <%=content_tag :tr,:class=>"#{cycle('odd', 'even')}",:id=>"row_#{post.id}" do %>
           <!-- logic to determine whether messages are new -->
           <td width="100%" height="50">
           <%=post.body %>  
           </td>
           <td valign="middle" nowrap="nowrap" height="50" align="center">  
-    	       <h3><%=post.name.nil?|| post.name.empty?  ? "Anonymous" : post.name %> </h3>
-             <p> <%=time_ago_in_words(post.created_at)%> ago </p>        
-    	       <%=image_tag("users.png")%>
-
+    	       <h3><%=post.name.nil?|| post.name.empty?  ? "Anonymous" : post.name  %> </h3>
+             <p> <%=time_ago_in_words(post.created_at)%> ago </p> 
+             <%= button_to(t("forem.post.delete"), 
+             forum_topic_post_path(post.topic.forum.id,post.topic.id,post.id),  :id => post.id, :method => :delete, :remote => true, :confirm => t("forem.post.delete_question"), :class => "button delete") if current_user%>
             </td>
         <%end%>
       <%end%> 
   <%end%>
-</table>
+</table>  
+<%= will_paginate @posts %>
 </div>  
 
 <% content_for :stylesheets do %>
@@ -35,7 +39,8 @@
 <%end%> 
 
 <% content_for :javascript_libraries do %>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>    
+  <%=javascript_include_tag "jquery#{"-min" if Rails.env.production?}" %>
+  <%= javascript_include_tag 'rails.js' %>    
 <%end%>
 
 <% content_for :after_javascript_libraries do %> 

@@ -1,6 +1,34 @@
-<a name='forum-#{forum.id}'></a>
-<div id='forum_<%= forum.id %>' class='forum'>
-  <div class='description'>
-    <%= forum.description %>
-  </div>
-</div>
+<table width="100%" cellspacing="1" cellpadding="2" border="0" class="forum">
+<%=content_tag :tbody do%>
+  <tr>
+  	<th nowrap="nowrap" height="25"  colspan="2">&nbsp;Forum&nbsp;</th>
+  	<th width="50" nowrap="nowrap">&nbsp;Topics&nbsp;</th>
+  	<th width="50" nowrap="nowrap">&nbsp;Posts&nbsp;</th>
+  	<th nowrap="nowrap">&nbsp;Last Post&nbsp;</th>
+  </tr>
+
+  <% @forums.each do |forum| %>
+    <%=content_tag :tr,:class=>"#{cycle('odd', 'even')}",:id=>"row_#{forum.id}" do %>
+      	<td valign="middle" height="50" align="center"><%=image_tag "email.png",:alt=>"New posts" %></td>
+      	<td width="100%" height="50"> 
+          <h2><%= link_to forum.title, forum_topics_path(forum) %></h2>
+          <h3><%= forum.description %> </h3>
+        </td>   
+      	<td valign="middle" height="50" align="center"><%= forum.topics_count %></td>
+      	<td valign="middle" height="50" align="center"><%= forum.posts_count %></td>
+      	<td valign="middle" nowrap="nowrap" height="50" align="center">       
+      	      <%if @recent_post= forum.posts.recent_post%>
+      	       <%=time_ago_in_words(@recent_post.created_at)%> ago         
+      	       <br>
+      	       <%=@recent_post.name.nil? || @recent_post.name.empty? ? link_to("Anonymous",forum_topic_posts_path(forum, @recent_post.topic)) : link_to(@recent_post.name,forum_topic_posts_path(forum, @recent_post.topic)) %>
+      	       <%=link_to(image_tag("icon_latest_reply.gif"),forum_topic_posts_path(forum, @recent_post.topic))%> 
+              <%else%>
+              "no posts"
+              <%end%> 
+              <%= button_to(t("forem.forum.delete"), forum_path(forum),  :id => forum.id, :method => :delete, :remote => true, :confirm => t("forem.forum.delete_question"), :class => "button delete") if current_user%>
+      	  </td>
+    <%end%>
+  <% end%> 
+<%end%>
+ <%= will_paginate @forums %>      
+</table>

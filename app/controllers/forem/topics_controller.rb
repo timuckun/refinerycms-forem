@@ -4,6 +4,7 @@ module Forem
     before_filter :find_forum
 
     def index
+      @topics = find_forum.topics.paginate( :page => params[:page], :per_page => 3)
       # @forums = Forem::Forum.all
     end
 
@@ -19,6 +20,24 @@ module Forem
       @post=@topic.posts.build
       render :layout => request.xhr? ? false : true  
     end
+ 
+    def destroy      
+      @topic = @forum.topics.find(params[:id]) 
+      if current_user&&@topic.destroy
+        # Recalculate topic and post counts
+        Forem::Service.recalulate_post_topic_counts(@topic.forum)
+        flash[:notice] = t("forem.topic.deleted") 
+      else
+        flash[:error] = t("forem.topic.cannot_delete")
+      end
+      respond_to do |format|
+        format.html { redirect_to forum_topics_path(@topic.forum)}
+        format.js
+      end
+    end
+ 
+ 
+ 
   
     def create   
       #TODO - I am currently allowing anonymous creation of topics (probably need to change at at later stage) 

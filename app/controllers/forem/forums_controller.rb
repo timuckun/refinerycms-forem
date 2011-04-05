@@ -4,8 +4,23 @@ module Forem
     #crudify Forem::Forum,:title_attribute => :title
     before_filter :authenticate_forem_admin, :only => [:new, :create]
     
-    def index
-      @forums = Forem::Forum.all
+
+     def destroy
+        @forum = Forem::Forum.find(params[:id])  
+        if current_user&&@forum.destroy  
+          flash[:notice] = t("forem.forum.deleted")
+        else
+          flash[:error] = t("forem.forum.cannot_delete")
+        end
+        respond_to do |format|
+          format.html { redirect_to forums_path }
+          format.js
+        end
+    end
+      
+      
+    def index 
+      @forums = Forem::Forum.paginate( :page => params[:page], :per_page => 3)
     end
 
     def show

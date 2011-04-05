@@ -1,5 +1,9 @@
 module Forem
-  class Service
+  class Service  
+    def self.recalulate_post_topic_counts(forum)
+      Forum.update_all("posts_count = #{forum.posts.count},topics_count=#{forum.topics.count} ", :id => forum.id)
+    end
+    
     def self.create_post(topic_id, post_params, user_id)
       topic = Topic.find(topic_id)
       raise "Invalid topic" and return  if topic.nil?

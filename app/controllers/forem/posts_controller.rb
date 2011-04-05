@@ -4,7 +4,7 @@ module Forem
     before_filter :find_topic
 
     def index
-      @posts = find_topic.posts
+      @posts = find_topic.posts.paginate( :page => params[:page], :per_page => 3)
     end
 
     def new
@@ -22,17 +22,21 @@ module Forem
         render :action => "new"
       end
     end
+ 
     
-    def destroy
+    def destroy      
       @post = @topic.posts.find(params[:id])
-      if current_user.login == @post.user.login
-        @post.destroy
+      if current_user&&@post.destroy   
+        # Recalculate topic and post counts
+        Forem::Service.recalulate_post_topic_counts(@topic.forum)
         flash[:notice] = t("forem.post.deleted")
       else
         flash[:error] = t("forem.post.cannot_delete")
       end
-      
-      redirect_to [@topic.forum, @topic]
+      respond_to do |format|
+        format.html { redirect_to [@topic.forum, @topic] }
+        format.js
+      end
     end
 
     private

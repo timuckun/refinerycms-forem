@@ -13,10 +13,11 @@ begin
     gem.summary = "Ruby on Rails forum engine for RefineryCMS"
     gem.description  = "A port of forem to  refinerycms"
     gem.email = "tim@uckun.com"
-    gem.authors = ["Tim Uckun",  "Ryan Bigg"]
-    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{public}/**/*", "{config}/**/*"]
+    gem.authors = ["Tim Uckun", "Chris Zingel", "Ryan Bigg"]
+    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{public}/**/*", "{config}/**/*","{spec}/**/*"]
     gem.add_dependency    'refinerycms',  '>= 0.9.9'
-    gem.add_dependency   'simple_form'
+    gem.add_dependency   'simple_form' 
+    gem.add_dependency    "will_paginate", "~> 3.0.pre2"
   end
   Jeweler::GemcutterTasks.new
 rescue

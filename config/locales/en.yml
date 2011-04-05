@@ -7,6 +7,10 @@ en:
       not_signed_in: You must sign in first.
       access_denied: Access denied.
     forum:
+      delete: Remove a forum
+      delete_question: Are you sure you want to remove a forum?
+      deleted: Your forum has been deleted.
+      cannot_delete: You cannot delete this forum.
       new: Creating a new forum
       created: This forum has been created.
       not_created: This forum could not be created.
@@ -20,15 +24,21 @@ en:
       create: Create topic
       created: This topic has been created.
       new: Creating a new topic
-      not_created: This topic could not be created.
+      not_created: This topic could not be created. 
+      delete: Remove a topic
+      deleted: Your topic has been deleted.
+      cannot_delete: You cannot delete topic
+      delete_question: Are you sure you want to remove a topic?
     post:
       buttons:
         reply: Post Reply
       created: Your reply has been posted.
       new: Posting a reply
       not_created: Your reply could not be posted.
+      delete: Remove a post
       deleted: Your post has been deleted.
-      cannot_delete: You cannot delete a post you do not own.
+      cannot_delete: You cannot delete a post you do not own. 
+      delete_question: Are you sure you want to remove a post?
   admin:
     forem:
       forums:

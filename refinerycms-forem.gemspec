@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Tim Uckun", "Ryan Bigg"]
-  s.date = %q{2011-04-04}
+  s.authors = ["Tim Uckun", "Chris Zingel", "Ryan Bigg"]
+  s.date = %q{2011-04-05}
   s.description = %q{A port of forem to  refinerycms}
   s.email = %q{tim@uckun.com}
   s.extra_rdoc_files = [
@@ -39,14 +39,17 @@ Gem::Specification.new do |s|
     "app/views/forem/admin/forums/show.html.erb",
     "app/views/forem/forums/_form.html.erb",
     "app/views/forem/forums/_forum.html.erb",
+    "app/views/forem/forums/destroy.js.erb",
     "app/views/forem/forums/index.html.erb",
     "app/views/forem/forums/new.html.erb",
     "app/views/forem/forums/show.html.erb",
     "app/views/forem/posts/_form.html.erb",
     "app/views/forem/posts/_post.html.erb",
+    "app/views/forem/posts/destroy.js.erb",
     "app/views/forem/posts/index.html.erb",
     "app/views/forem/posts/new.html.erb",
     "app/views/forem/topics/_form.html.erb",
+    "app/views/forem/topics/destroy.js.erb",
     "app/views/forem/topics/index.html.erb",
     "app/views/forem/topics/new.html.erb",
     "app/views/forem/topics/show.html.erb",
@@ -61,15 +64,20 @@ Gem::Specification.new do |s|
     "public/images/facebox/closelabel.png",
     "public/images/facebox/loading.gif",
     "public/images/icon_latest_reply.gif",
-    "public/images/users.png",
     "public/javascripts/facebox.js",
     "public/src/refinerycms-forum.scss",
     "public/stylesheets/facebox.css",
-    "public/stylesheets/refinerycms-forum.css"
+    "public/stylesheets/refinerycms-forum.css",
+    "spec/helpers/events_helper_spec.rb",
+    "spec/models/forem_spec.rb"
   ]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.1}
   s.summary = %q{Ruby on Rails forum engine for RefineryCMS}
+  s.test_files = [
+    "spec/helpers/events_helper_spec.rb",
+    "spec/models/forem_spec.rb"
+  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -77,13 +85,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<refinerycms>, [">= 0.9.9"])
       s.add_runtime_dependency(%q<simple_form>, [">= 0"])
+      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
     else
       s.add_dependency(%q<refinerycms>, [">= 0.9.9"])
       s.add_dependency(%q<simple_form>, [">= 0"])
+      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
     end
   else
     s.add_dependency(%q<refinerycms>, [">= 0.9.9"])
     s.add_dependency(%q<simple_form>, [">= 0"])
+    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
   end
 end
 
