@@ -7,7 +7,7 @@ module Forem
     def self.create_post(topic_id, post_params, user_id)
       topic = Topic.find(topic_id)
       raise "Invalid topic" and return  if topic.nil?
-      Forum.update_all('posts_count = posts_count + 1', :id => topic.forum.id)
+      Forum.update_all('posts_count = posts_count + 1,  updated_at = Now()', :id => topic.forum.id)
       post=topic.posts.create(post_params)
       post.save!&&post
     end
